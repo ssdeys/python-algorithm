@@ -1,0 +1,29 @@
+from sklearn import datasets
+from sklearn.neighbors import KNeighborsClassifier
+iris=datasets.load_iris()
+from sklearn.cross_validation import train_test_split
+x_train,x_text,y_train,y_test=train_test_split(iris.data,iris.target,test_size=0.25,random_state=33)
+knn=KNeighborsClassifier()
+knn.fit(x_train,y_train)
+y_predict=knn.predict(x_text)
+print('准确率是1',knn.score(x_text,y_test))
+
+
+
+#csdn使用了
+# 从sklearn.preprocessing里选择导入数据标准化模块。
+from sklearn.preprocessing import StandardScaler
+# 从sklearn.neighbors里选择导入KNeighborsClassifier，即K近邻分类器。
+from sklearn.neighbors import KNeighborsClassifier
+
+# 对训练和测试的特征数据进行标准化。
+ss = StandardScaler()
+X_train = ss.fit_transform(x_train)
+X_test = ss.transform(x_text)
+knn.fit(X_train,y_train)
+y_predict=knn.predict(X_test)
+print('准确率是',knn.score(X_test,y_test))
+
+
+#准确率是1 0.9473684210526315
+#准确率是 0.8947368421052632
